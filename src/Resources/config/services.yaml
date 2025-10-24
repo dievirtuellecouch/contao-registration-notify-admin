@@ -1,0 +1,6 @@
+services:
+  Websailing\RegistrationNotifyAdminBundle\:
+    resource: '../../*'
+    exclude: '../../{Resources,Tests}'
+    autowire: true
+    autoconfigure: true

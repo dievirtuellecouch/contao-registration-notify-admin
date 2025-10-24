@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2">
+  <file source-language="de" datatype="plaintext" original="tl_settings">
+    <body>
+      <trans-unit id="rna_legend">
+        <source>Registrierungs-Benachrichtigung</source>
+      </trans-unit>
+      <trans-unit id="ma_legend">
+        <source>Mitglieder-Benachrichtigungen</source>
+      </trans-unit>
+      <trans-unit id="rna_nc_registration_notification.0">
+        <source>Notification (Registrierung)</source>
+      </trans-unit>
+      <trans-unit id="rna_nc_registration_notification.1">
+        <source>Admin-Benachrichtigung bei neuer Registrierung.</source>
+      </trans-unit>
+      <trans-unit id="rna_nc_activation_notification.0">
+        <source>Notification (Aktivierung)</source>
+      </trans-unit>
+      <trans-unit id="rna_nc_activation_notification.1">
+        <source>Admin-Benachrichtigung bei Aktivierung.</source>
+      </trans-unit>
+      <trans-unit id="rna_nc_profile_update_notification.0">
+        <source>Notification (Profiländerung)</source>
+      </trans-unit>
+      <trans-unit id="rna_nc_profile_update_notification.1">
+        <source>Admin-Benachrichtigung, wenn ein Mitglied seine Daten ändert.</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
