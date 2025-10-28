@@ -4,3 +4,14 @@ services:
     exclude: '../../{Resources,Tests}'
     autowire: true
     autoconfigure: true
+
+  # Explicitly tag hooks so the bundle installs/uninstalls cleanly
+  Websailing\RegistrationNotifyAdminBundle\EventListener\UpdatePersonalDataListener:
+    arguments:
+      $logger: '@monolog.logger.contao'
+    tags:
+      - { name: 'contao.hook', hook: 'updatePersonalData', method: '__invoke' }
+
+  Websailing\RegistrationNotifyAdminBundle\EventListener\ParseTemplateAvatarPreviewListener:
+    tags:
+      - { name: 'contao.hook', hook: 'parseFrontendTemplate', method: '__invoke' }

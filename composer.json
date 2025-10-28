@@ -1,6 +1,6 @@
 {
   "name": "dievirtuellecouch/contao-registration-notify-admin",
-  "description": "Notify admin on member registration/activation for Contao 5.3",
+  "description": "Notify admin on member registration/activation (Contao 5.3)",
   "type": "contao-bundle",
   "license": "proprietary",
   "require": {
