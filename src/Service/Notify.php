@@ -39,7 +39,9 @@ class Notify extends Frontend
             } elseif (\is_array($user)) {
                 $row = $user;
             }
-        } catch (\Throwable $e) {}
+        } catch (\Throwable $e) {
+            $this->logNotificationError('Could not normalize activated member data.', $e);
+        }
         $tokens = [
             'domain' => Environment::get('host'),
             'member' => $row,
@@ -54,6 +56,19 @@ class Notify extends Frontend
             /** @var \Terminal42\NotificationCenterBundle\NotificationCenter $nc */
             $nc = System::getContainer()->get(\Terminal42\NotificationCenterBundle\NotificationCenter::class);
             $nc->sendNotification($notificationId, $tokens);
-        } catch (\Throwable $e) {}
+        } catch (\Throwable $e) {
+            $this->logNotificationError('Could not send registration notification.', $e, ['notificationId' => $notificationId]);
+        }
+    }
+
+    private function logNotificationError(string $message, \Throwable $exception, array $context = []): void
+    {
+        try {
+            $container = System::getContainer();
+            if ($container->has('monolog.logger.contao')) {
+                $container->get('monolog.logger.contao')->error($message, $context + ['exception' => $exception]);
+            }
+        } catch (\Throwable $e) {
+        }
     }
 }

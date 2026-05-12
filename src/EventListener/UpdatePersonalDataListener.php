@@ -7,13 +7,7 @@ use Terminal42\NotificationCenterBundle\NotificationCenter;
 use Contao\Database;
 use Contao\StringUtil;
 use Contao\FilesModel;
-use Contao\Dbafs;
-use Contao\System;
-use Contao\CoreBundle\ServiceAnnotation\Hook;
 
-/**
- * @Hook("updatePersonalData")
- */
 class UpdatePersonalDataListener
 {
     public function __construct(private LoggerInterface $logger, private NotificationCenter $notificationCenter)
@@ -82,7 +76,10 @@ class UpdatePersonalDataListener
                 // no debug
             }
         } catch (\Throwable $e) {
-            // ignore
+            $this->logger->error('Could not update member avatar after personal data update.', [
+                'exception' => $e,
+                'memberId' => $memberId,
+            ]);
         }
 
         // Optionally send a notification if configured in tl_settings
@@ -92,15 +89,19 @@ class UpdatePersonalDataListener
                 $tokens = [
                     'domain' => (string) (\Contao\Environment::get('host') ?: ''),
                     'member' => $userArr,
-                    'member_old' => $userArr,
+                    'member_old' => [],
                     'changed' => array_fill_keys(array_keys($submitted), 1),
+                    'changed_values' => $submitted,
                     'admin_email' => ($GLOBALS['TL_ADMIN_EMAIL'] ?? ''),
                 ];
                 // no debug
                 $this->notificationCenter->sendNotification($notificationId, $tokens);
             }
         } catch (\Throwable $e) {
-            // ignore
+            $this->logger->error('Could not send personal data update notification.', [
+                'exception' => $e,
+                'memberId' => $memberId,
+            ]);
         }
     }
 }

@@ -1,5 +1,6 @@
 {
   "name": "dievirtuellecouch/contao-registration-notify-admin",
+  "version": "1.0.4",
   "description": "Notify admin on member registration/activation for Contao 5.3",
   "type": "contao-bundle",
   "license": "proprietary",
@@ -16,4 +17,3 @@
     "contao-manager-plugin": "Websailing\\RegistrationNotifyAdminBundle\\ContaoManager\\Plugin"
   }
 }
-
